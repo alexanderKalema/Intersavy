@@ -11,72 +11,83 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i6;
-import 'package:flutter/material.dart' as _i7;
+import 'package:auto_route/auto_route.dart' as _i7;
+import 'package:flutter/material.dart' as _i8;
 
-import '../ui/calculator_screen.dart' as _i1;
-import '../ui/date_and_time_screen.dart' as _i4;
-import '../ui/music_screen.dart' as _i5;
-import '../ui/puzzle_screen.dart' as _i2;
-import '../ui/stop_watch_screen.dart' as _i3;
+import '../ui/calculator_screen.dart' as _i2;
+import '../ui/date_and_time_screen.dart' as _i5;
+import '../ui/home_screen.dart' as _i1;
+import '../ui/music_screen.dart' as _i6;
+import '../ui/puzzle_screen.dart' as _i3;
+import '../ui/stop_watch_screen.dart' as _i4;
 
-class AppRouter extends _i6.RootStackRouter {
-  AppRouter([_i7.GlobalKey<_i7.NavigatorState>? navigatorKey])
+class AppRouter extends _i7.RootStackRouter {
+  AppRouter([_i8.GlobalKey<_i8.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i6.PageFactory> pagesMap = {
-    CalculatorScreenRoute.name: (routeData) {
-      return _i6.MaterialPageX<dynamic>(
+  final Map<String, _i7.PageFactory> pagesMap = {
+    HomeScreenRoute.name: (routeData) {
+      return _i7.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i1.CalculatorScreen(),
+        child: const _i1.HomeScreen(),
+      );
+    },
+    CalculatorScreenRoute.name: (routeData) {
+      return _i7.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i2.CalculatorScreen(),
       );
     },
     PuzzleScreenRoute.name: (routeData) {
-      return _i6.MaterialPageX<dynamic>(
+      return _i7.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i2.PuzzleScreen(),
+        child: const _i3.PuzzleScreen(),
       );
     },
     StopWatchScreenRoute.name: (routeData) {
-      return _i6.MaterialPageX<dynamic>(
+      return _i7.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i3.StopWatchScreen(),
+        child: const _i4.StopWatchScreen(),
       );
     },
     DateAndTimeScreenRoute.name: (routeData) {
-      return _i6.MaterialPageX<dynamic>(
+      return _i7.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i4.DateAndTimeScreen(),
+        child: const _i5.DateAndTimeScreen(),
       );
     },
     MusicScreenRoute.name: (routeData) {
-      return _i6.MaterialPageX<dynamic>(
+      return _i7.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i5.MusicScreen(),
+        child: const _i6.MusicScreen(),
       );
     },
   };
 
   @override
-  List<_i6.RouteConfig> get routes => [
-        _i6.RouteConfig(
-          CalculatorScreenRoute.name,
+  List<_i7.RouteConfig> get routes => [
+        _i7.RouteConfig(
+          HomeScreenRoute.name,
           path: '/',
         ),
-        _i6.RouteConfig(
+        _i7.RouteConfig(
+          CalculatorScreenRoute.name,
+          path: '/calculator',
+        ),
+        _i7.RouteConfig(
           PuzzleScreenRoute.name,
           path: '/puzzle',
         ),
-        _i6.RouteConfig(
+        _i7.RouteConfig(
           StopWatchScreenRoute.name,
           path: '/stop-watch',
         ),
-        _i6.RouteConfig(
+        _i7.RouteConfig(
           DateAndTimeScreenRoute.name,
           path: 'date-time',
         ),
-        _i6.RouteConfig(
+        _i7.RouteConfig(
           MusicScreenRoute.name,
           path: '/music',
         ),
@@ -84,20 +95,32 @@ class AppRouter extends _i6.RootStackRouter {
 }
 
 /// generated route for
-/// [_i1.CalculatorScreen]
-class CalculatorScreenRoute extends _i6.PageRouteInfo<void> {
+/// [_i1.HomeScreen]
+class HomeScreenRoute extends _i7.PageRouteInfo<void> {
+  const HomeScreenRoute()
+      : super(
+          HomeScreenRoute.name,
+          path: '/',
+        );
+
+  static const String name = 'HomeScreenRoute';
+}
+
+/// generated route for
+/// [_i2.CalculatorScreen]
+class CalculatorScreenRoute extends _i7.PageRouteInfo<void> {
   const CalculatorScreenRoute()
       : super(
           CalculatorScreenRoute.name,
-          path: '/',
+          path: '/calculator',
         );
 
   static const String name = 'CalculatorScreenRoute';
 }
 
 /// generated route for
-/// [_i2.PuzzleScreen]
-class PuzzleScreenRoute extends _i6.PageRouteInfo<void> {
+/// [_i3.PuzzleScreen]
+class PuzzleScreenRoute extends _i7.PageRouteInfo<void> {
   const PuzzleScreenRoute()
       : super(
           PuzzleScreenRoute.name,
@@ -108,8 +131,8 @@ class PuzzleScreenRoute extends _i6.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.StopWatchScreen]
-class StopWatchScreenRoute extends _i6.PageRouteInfo<void> {
+/// [_i4.StopWatchScreen]
+class StopWatchScreenRoute extends _i7.PageRouteInfo<void> {
   const StopWatchScreenRoute()
       : super(
           StopWatchScreenRoute.name,
@@ -120,8 +143,8 @@ class StopWatchScreenRoute extends _i6.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i4.DateAndTimeScreen]
-class DateAndTimeScreenRoute extends _i6.PageRouteInfo<void> {
+/// [_i5.DateAndTimeScreen]
+class DateAndTimeScreenRoute extends _i7.PageRouteInfo<void> {
   const DateAndTimeScreenRoute()
       : super(
           DateAndTimeScreenRoute.name,
@@ -132,8 +155,8 @@ class DateAndTimeScreenRoute extends _i6.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.MusicScreen]
-class MusicScreenRoute extends _i6.PageRouteInfo<void> {
+/// [_i6.MusicScreen]
+class MusicScreenRoute extends _i7.PageRouteInfo<void> {
   const MusicScreenRoute()
       : super(
           MusicScreenRoute.name,
