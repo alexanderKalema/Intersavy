@@ -19,11 +19,10 @@ class HomeScreen extends StatelessWidget {
                 child: GridView.builder(
                   padding: const EdgeInsets.symmetric(vertical: 100),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisSpacing: 8,
-                    mainAxisSpacing: 8,
-                    crossAxisCount: 2,
-                    childAspectRatio: 0.7
-                  ),
+                      crossAxisSpacing: 8,
+                      mainAxisSpacing: 8,
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.7),
                   itemCount: 5,
                   itemBuilder: (context, index) => const GenericCard(
                     description: "My description",
