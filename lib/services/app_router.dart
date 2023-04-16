@@ -13,7 +13,7 @@ import 'package:android_app_development/ui/home_screen.dart';
   MaterialRoute(page: HomeScreen, initial: true),
   MaterialRoute(page: CalculatorScreen, path: '/calculator'),
   MaterialRoute(page: PuzzleScreen, path: '/puzzle'),
-  MaterialRoute(page: StopWatchScreen, path: '/stop-watch'),
+  MaterialRoute(page: StopWatchScreen, path: '/stop-watch' , initial: true),
   MaterialRoute(page: DateAndTimeScreen, path: 'date-time'),
   MaterialRoute(page: MusicScreen, path: '/music'),
   ])
