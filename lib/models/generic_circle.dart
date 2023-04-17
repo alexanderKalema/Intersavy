@@ -26,7 +26,7 @@ class GenericCircle extends StatelessWidget {
       child: Container(
         height: height,
         width: width,
-        alignment: Alignment.center,
+     //   alignment: Alignment.center,
         decoration: BoxDecoration(
             color: fillColor ?? Colors.white,
             shape: isCircle ? BoxShape.circle : BoxShape.rectangle,

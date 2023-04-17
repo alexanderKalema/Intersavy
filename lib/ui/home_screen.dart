@@ -1,4 +1,5 @@
 import 'package:android_app_development/models/generic_card.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:android_app_development/models/my_appbar.dart';
 
@@ -22,12 +23,16 @@ class HomeScreen extends StatelessWidget {
                       crossAxisSpacing: 8,
                       mainAxisSpacing: 8,
                       crossAxisCount: 2,
-                      childAspectRatio: 0.7),
+                      childAspectRatio: 0.7,
+                  ),
                   itemCount: 5,
-                  itemBuilder: (context, index) => const GenericCard(
+                  itemBuilder: (context, index) =>  GenericCard(
                     description: "My description",
                     title: "My title",
                     icon: Icons.calculate_rounded,
+                    onTap: () {
+                      context.router.pushNamed('/date-time');
+                    },
                   ),
                 ),
               ),
