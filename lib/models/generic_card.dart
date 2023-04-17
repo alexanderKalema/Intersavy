@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:android_app_development/constants.dart';
 
@@ -6,12 +5,14 @@ class GenericCard extends StatefulWidget {
   final IconData icon;
   final String title;
   final String description;
+   final void Function()? onTap;
 
   const GenericCard(
       {Key? key,
       required this.icon,
       required this.title,
-      required this.description})
+      required this.description,
+      this.onTap})
       : super(key: key);
 
   @override
@@ -25,9 +26,7 @@ class _GenericCardState extends State<GenericCard> {
   Widget build(BuildContext context) {
     return SizedBox(
       child: InkWell(
-        onTap: () {
-          context.router.pushNamed('/stop-watch');
-        },
+        onTap: widget.onTap,
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(32),
