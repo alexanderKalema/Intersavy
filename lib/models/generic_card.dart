@@ -1,11 +1,12 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:android_app_development/constants.dart';
+
 
 class GenericCard extends StatefulWidget {
   final IconData icon;
   final String title;
   final String description;
-   final void Function()? onTap;
+  final void Function()? onTap;
 
   const GenericCard(
       {Key? key,
@@ -19,97 +20,155 @@ class GenericCard extends StatefulWidget {
   State<GenericCard> createState() => _GenericCardState();
 }
 
-class _GenericCardState extends State<GenericCard> {
-  bool _isExpanded = false;
+class _GenericCardState extends State<GenericCard>
+    with TickerProviderStateMixin {
+  late AnimationController _rotationController;
+  late Animation _rotationAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _rotationController = AnimationController(
+      vsync: this,
+      duration: const Duration(
+        seconds: 1,
+      ),
+    );
+    _rotationAnimation = Tween(
+      begin: 0.0,
+      end: pi,
+    )
+        .chain(
+          CurveTween(
+            curve: Curves.easeInOut,
+          ),
+        )
+        .animate(_rotationController);
+  }
+
+  void _toggleCard() {
+    if (_rotationController.isCompleted ) {
+      _rotationController.reverse();
+    } else {
+      _rotationController.forward();
+    }
+  }
+
+  @override
+  void dispose() {
+    _rotationController.dispose();
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: InkWell(
-        onTap: widget.onTap,
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(32),
-          ),
-          elevation: 5,
-          clipBehavior: Clip.hardEdge,
-          child: Padding(
-            padding: const EdgeInsets.all(5),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(
-                  height: 5,
+    return InkWell(
+      onTap: widget.onTap,
+      child: AnimatedBuilder(
+          animation: _rotationController,
+          builder: (context, child) {
+            return Transform(
+              transform: Matrix4.identity()
+                ..rotateY(
+                  _rotationAnimation.value,
                 ),
-                Icon(
-                  widget.icon,
-                  size: 80,
+              alignment: Alignment.center,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(82),
                 ),
-                Text(
-                  widget.title,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(
-                      top: _isExpanded ? 10 : 15,
-                      bottom: _isExpanded ? 10 : 15,
-                      left: 20,
-                      right: 5),
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(40)),
-                    color: Color(CARD_SECONDARY),
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const Text("Description"),
-                          const Expanded(child: SizedBox()),
-                          IconButton(
-                            onPressed: () {
-                              setState(() {
-                                _isExpanded = !_isExpanded;
-                              });
-                            },
-                            icon: Icon(
-                              _isExpanded
-                                  ? Icons.arrow_drop_up_sharp
-                                  : Icons.arrow_drop_down_sharp,
-                              size: 25,
-                            ),
-                          ),
-                        ],
-                      ),
-                      _isExpanded
-                          ? SizedBox(
-                              height: 60,
-                              child: SingleChildScrollView(
-                                child: Text(
-                                  widget.description,
-                                  softWrap: true,
-                                  style: const TextStyle(
-                                    fontSize: 15,
+                elevation: 5,
+                clipBehavior: Clip.hardEdge,
+                child: Padding(
+                    padding: const EdgeInsets.only(
+                      top: 35,
+                         bottom: 25,
+                         right: 20, left:20),
+                    child: _rotationController.isCompleted
+                        ? Transform(
+                          alignment: Alignment.center,
+                          transform: Matrix4.rotationY(pi),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment:  CrossAxisAlignment.center ,
+                              children: [
+
+                                Text(widget.description),
+                                InkWell(
+                                  onTap: _toggleCard,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const [
+
+                                      Icon(
+                                        Icons.arrow_back,
+                                        size: 25,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        "Back to main card",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                        ),
+                                      ),
+
+                                    ],
                                   ),
                                 ),
+                              ],
+                            ),
+                          )
+                        )
+                        : Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const SizedBox(
+                                height: 5,
                               ),
-                            )
-                          : const SizedBox(
-                              height: 5,
-                            )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+                              Icon(
+                                widget.icon,
+                                size: 80,
+                              ),
+                              Text(
+                                widget.title,
+                                style: const TextStyle(
+                                  fontSize: 27,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              InkWell(
+                                onTap: _toggleCard,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: const [
+                                    Text(
+                                        "Description",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                   Icon(
+                                             Icons.arrow_forward,
+                                        size: 25,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          )),
+              ),
+            );
+          }),
     );
   }
 }

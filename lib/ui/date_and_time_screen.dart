@@ -3,6 +3,7 @@ import 'package:android_app_development/services/clock_painter.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:android_app_development/models/my_appbar.dart';
+import 'package:android_app_development/constants.dart';
 
 class DateAndTimeScreen extends StatefulWidget {
   const DateAndTimeScreen({Key? key}) : super(key: key);
@@ -42,10 +43,13 @@ class _DateAndTimeScreenState extends State<DateAndTimeScreen> {
               children: [
                 const Text(
                   "Today is",
-                  style: TextStyle(fontSize: 35),
+                  style: TextStyle(fontSize: 25),
                 ),
-                Text(DateFormat.yMMMMd('en_US').format(dateTime)),
+                Text(
+                    DateFormat.yMMMMd('en_US').format(dateTime),
+                  style: TextStyle(fontSize: 45),),
                 GenericCircle(
+                  fillColor:  BUTTON_PRIMARY,
                     height: _isAnalog ? 300 : 100,
                     width: _isAnalog ? 300 : 250,
                     isCircle: _isAnalog ? true : false,
@@ -63,12 +67,11 @@ class _DateAndTimeScreenState extends State<DateAndTimeScreen> {
                       _isAnalog = !_isAnalog;
                     });
                   },
-                  fillColor: Colors.blue,
+                  fillColor:  BUTTON_PRIMARY,
                   child: Center(
                     child: Text(
                       _isAnalog ? "Change to digital" : "Change to analog",
                       style: const TextStyle(
-                        color: Colors.black,
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
                       ),

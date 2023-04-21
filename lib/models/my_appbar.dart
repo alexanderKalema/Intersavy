@@ -17,7 +17,7 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget {
       elevation: 1,
       titleSpacing: 50,
       title: Text(title),
-      shadowColor: const Color(APPBAR_SHADOW_COLOR),
+      shadowColor:  APPBAR_SHADOW_COLOR,
     );
   }
 }

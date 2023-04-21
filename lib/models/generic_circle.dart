@@ -31,7 +31,7 @@ class GenericCircle extends StatelessWidget {
             color: fillColor ?? Colors.white,
             shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
             border: Border.all(
-              color: fillColor ?? const Color(STOP_WATCH_BORDER),
+              color: fillColor ??  BUTTON_PRIMARY,
               width: 4,
             ),
             borderRadius: isCircle ? null : BorderRadius.circular(15),
