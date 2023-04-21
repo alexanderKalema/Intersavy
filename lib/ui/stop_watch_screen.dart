@@ -100,12 +100,14 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
                   isCircle: true,
                   child: Consumer<DateAndTimeProvider>(
                       builder: (context, value, child) {
-                    return Text(
-                      myNotifier.formattedTime,
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 35,
-                        fontWeight: FontWeight.bold,
+                    return Center(
+                      child: Text(
+                        myNotifier.formattedTime,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 35,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     );
                   })),

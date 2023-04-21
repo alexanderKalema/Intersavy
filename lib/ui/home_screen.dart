@@ -20,18 +20,18 @@ class HomeScreen extends StatelessWidget {
                 child: GridView.builder(
                   padding: const EdgeInsets.symmetric(vertical: 100),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisSpacing: 8,
-                      mainAxisSpacing: 8,
-                      crossAxisCount: 2,
-                      childAspectRatio: 0.7,
+                    crossAxisSpacing: 8,
+                    mainAxisSpacing: 8,
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.7,
                   ),
                   itemCount: 5,
-                  itemBuilder: (context, index) =>  GenericCard(
+                  itemBuilder: (context, index) => GenericCard(
                     description: "My description",
                     title: "My title",
                     icon: Icons.calculate_rounded,
                     onTap: () {
-                      context.router.pushNamed('/date-time');
+                      context.router.pushNamed('/music');
                     },
                   ),
                 ),
