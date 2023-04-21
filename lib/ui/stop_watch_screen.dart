@@ -1,3 +1,4 @@
+import 'package:android_app_development/constants.dart';
 import 'package:android_app_development/models/generic_circle.dart';
 import 'package:android_app_development/services/stop_watch_service.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,13 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
                 style: TextStyle(fontSize: 24),
               ),
               Container(
-                color: Colors.white,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(
+                    color: Colors.black.withOpacity(0.3),
+                  ),
+                ),
+
                 child: Column(
                   children: [
                     ListTile(
@@ -40,7 +47,7 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
                         children: const [
                           Text("Overall lap"),
                           SizedBox(
-                            width: 60,
+                            width: 50,
                           ),
                           Text("Since last lap"),
                         ],
@@ -69,7 +76,7 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
                                       children: [
                                         Text(lap.totalLapTime),
                                         const SizedBox(
-                                          width: 40,
+                                          width: 30,
                                         ),
                                         Text(lap.lapTime)
                                       ],
@@ -104,7 +111,7 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
                       child: Text(
                         myNotifier.formattedTime,
                         style: const TextStyle(
-                          color: Colors.black,
+                          fontFamily: '',
                           fontSize: 35,
                           fontWeight: FontWeight.bold,
                         ),
@@ -121,10 +128,12 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
                       width: 70,
                       height: 70,
                       isCircle: true,
+                      fillColor: BUTTON_PRIMARY,
                       onTap: myNotifier.pauseOrPlay,
                       child: Icon(
                         myNotifier.isRunning ? Icons.pause : Icons.play_arrow,
                         size: 50,
+                        color: Colors.black
                       ),
                     );
                   },
@@ -136,6 +145,7 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
                   width: 70,
                   height: 70,
                   isCircle: true,
+                  fillColor: BUTTON_PRIMARY,
                   onTap: () {
                     myNotifier.reset();
                     myNotifier.savedLaps.clear();
@@ -144,6 +154,7 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
                   child: const Icon(
                     Icons.refresh,
                     size: 50,
+                      color: Colors.black
                   ),
                 ),
                 const SizedBox(
@@ -165,13 +176,15 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
                     ));
                     setState(() {});
                   },
-                  fillColor: Colors.blue,
-                  child: const Text(
-                    "Save Lap",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
+                  fillColor: BUTTON_PRIMARY,
+                  child: const Center(
+                    child: Text(
+                      "Save Lap",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),

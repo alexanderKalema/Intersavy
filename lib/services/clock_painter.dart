@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:android_app_development/constants.dart';
 
 class AnalogClockPainter extends CustomPainter {
   AnalogClockPainter() : super(repaint: IssueRepaint());
@@ -13,26 +14,26 @@ class AnalogClockPainter extends CustomPainter {
     final radius = math.min(centerX, centerY);
 
     final outerCirclePaint = Paint()
-      ..color = Colors.grey[300]!
+      ..color = CLOCK_OUTER_CIRCLE
       ..strokeWidth = radius / 20
       ..style = PaintingStyle.stroke;
 
     final innerCirclePaint = Paint()
-      ..color = Colors.white
+      ..color = CLOCK_INNER_CIRCLE
       ..style = PaintingStyle.fill;
 
     final hourHandPaint = Paint()
-      ..color = Colors.red
+      ..color = CLOCK_HOUR_HAND
       ..strokeWidth = radius / 20
       ..strokeCap = StrokeCap.round;
 
     final minuteHandPaint = Paint()
-      ..color = Colors.black
+      ..color =CLOCK_MINUTE_HAND
       ..strokeWidth = radius / 60
       ..strokeCap = StrokeCap.round;
 
     final secondHandPaint = Paint()
-      ..color = Colors.blue.withOpacity(0.8)
+      ..color = CLOCK_SECOND_HAND
       ..strokeWidth = radius / 100
       ..strokeCap = StrokeCap.round;
 
@@ -57,9 +58,11 @@ class AnalogClockPainter extends CustomPainter {
       hourLabelPainter.text = TextSpan(
         text: i.toString(),
         style: TextStyle(
-            fontSize: radius / 8,
+          fontFamily: 'PoppinsRegular',
+          color: SECONDARY_TEXT_COLOR,
+            fontSize: radius / 7,
             fontWeight: FontWeight.bold,
-            color: Colors.black),
+            ),
       );
       hourLabelPainter.layout();
       final labelOffset = Offset(labelX - hourLabelPainter.width / 2,
@@ -121,14 +124,14 @@ class DigitalClockPainter extends CustomPainter {
     DateTime dateTime = DateTime.now();
     // Background
     Paint background = Paint()
-      ..color = Colors.blue
+      ..color =  BUTTON_PRIMARY
       ..style = PaintingStyle.fill;
     canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), background);
 
     // Text style
     TextStyle textStyle = TextStyle(
-      color: Colors.white,
-      fontFamily: 'RobotoMono',
+      fontFamily: 'PoppinsRegular',
+      color: SECONDARY_TEXT_COLOR,
       fontWeight: FontWeight.bold,
       fontSize: size.height / 2,
     );

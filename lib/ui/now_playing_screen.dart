@@ -1,3 +1,4 @@
+import 'package:android_app_development/constants.dart';
 import 'package:android_app_development/models/generic_circle.dart';
 import 'package:android_app_development/models/my_appbar.dart';
 import 'package:android_app_development/services/music_service.dart';
@@ -48,7 +49,7 @@ class _NowPlayingState extends State<NowPlaying> {
                   height: 350,
                   width: double.infinity,
                   isCircle: false,
-                  fillColor: Colors.blueGrey,
+                  fillColor: BUTTON_PRIMARY,
                   child: Padding(
                     padding: EdgeInsets.all(70.0),
                     child: GenericCircle(
@@ -58,6 +59,7 @@ class _NowPlayingState extends State<NowPlaying> {
                       child: Icon(
                         Icons.music_note_sharp,
                         size: 150,
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -119,10 +121,12 @@ class _NowPlayingState extends State<NowPlaying> {
                     GenericCircle(
                       height: 70,
                       width: 70,
+                      fillColor: BUTTON_PRIMARY,
                       isCircle: true,
                       child: const Icon(
                         Icons.skip_previous,
                         size: 50,
+                        color: Colors.black,
                       ),
                       onTap: () {
                         value.playOrPauseSong();
@@ -135,10 +139,12 @@ class _NowPlayingState extends State<NowPlaying> {
                     GenericCircle(
                       height: 70,
                       width: 70,
+                      fillColor: BUTTON_PRIMARY,
                       isCircle: true,
                       child: Icon(
                         value.isPlaying ? Icons.pause : Icons.play_arrow,
                         size: 50,
+                        color: Colors.black,
                       ),
                       onTap: () {
                         value.playOrPauseSong();
@@ -147,6 +153,7 @@ class _NowPlayingState extends State<NowPlaying> {
                     GenericCircle(
                       height: 70,
                       width: 70,
+                      fillColor: BUTTON_PRIMARY,
                       isCircle: true,
                       onTap: () {
                         value.playOrPauseSong();
@@ -157,6 +164,7 @@ class _NowPlayingState extends State<NowPlaying> {
                       child: const Icon(
                         Icons.skip_next,
                         size: 50,
+                        color: Colors.black,
                       ),
                     ),
                   ],
