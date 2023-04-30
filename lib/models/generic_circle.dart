@@ -6,6 +6,7 @@ class GenericCircle extends StatelessWidget {
   final double width;
   final Widget child;
   final bool isCircle;
+  final bool? isCalculatorButton;
   final void Function()? onTap;
   final Color? fillColor;
 
@@ -17,6 +18,7 @@ class GenericCircle extends StatelessWidget {
     required this.isCircle,
     this.fillColor,
     this.onTap,
+    this.isCalculatorButton,
   }) : super(key: key);
 
   @override
@@ -31,21 +33,22 @@ class GenericCircle extends StatelessWidget {
             color: fillColor ?? Colors.white,
             shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
             border: Border.all(
-              color: fillColor ??  BUTTON_PRIMARY,
-              width: 4,
+              color:  isCalculatorButton?? false ? Colors.black26  : fillColor ??  BUTTON_PRIMARY,
+              width: isCalculatorButton?? false ? 1 : 4,
             ),
             borderRadius: isCircle ? null : BorderRadius.circular(15),
-            boxShadow: const [
+            boxShadow:  [
               BoxShadow(
                 color: Colors.black26,
-                offset: Offset(20, 20),
-                blurRadius: 40,
+                offset: isCalculatorButton?? false ? Offset(0,0) : Offset(20, 20),
+                blurRadius: isCalculatorButton?? false ? 3 :40,
               ),
               BoxShadow(
-                color: Colors.white,
-                offset: Offset(-1, -1),
-                blurRadius: 7,
+                color: isCalculatorButton?? false ? fillColor ?? Colors.white54 :Colors.white,
+                offset: isCalculatorButton?? false ? Offset(0, 0) :Offset(-1, -1),
+                blurRadius: isCalculatorButton?? false ? 2:7,
               )
+
             ]),
         child: child,
       ),

@@ -1,5 +1,5 @@
-import 'package:android_app_development/services/bloc/home_event.dart';
-import 'package:android_app_development/services/bloc/home_state.dart';
+import 'package:android_app_development/services/bloc/home/home_event.dart';
+import 'package:android_app_development/services/bloc/home/home_state.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 

@@ -11,4 +11,26 @@ const CLOCK_MINUTE_HAND =Colors.black;
 const CLOCK_SECOND_HAND = Colors.blue;
 const CLOCK_INNER_CIRCLE = Colors.white;
 const CLOCK_OUTER_CIRCLE = Colors.white54;
-const ICON_COLOR = Color(0xFF414A4C) ;
+const BUTTON_SECONDARY = Color(0xFFF6a43F);
+const ICON_COLOR = Color(0xFF414A4C);
+
+
+const List<String> simpleCalculatorKeys = [
+  "AC", "⌫", "%", "/",
+  "7", "8", "9", "*",
+  "4", "5", "6", "-",
+  "1", "2", "3", "+",
+  ".", "0", "", "="
+];
+
+const scientificCalculatorKeys = [
+  "log", "ln", "asin", "acos",
+  "atan", "(", ")", "sin",
+  "cos", "tan", "ln2", "AC",
+  "⌫", " mód ", "√", "^",
+  "7", "8", "9", "/",
+  "π", "4", "5", "6", "*",
+  "e", "1", "2", "3", "+",
+  "%", ".", "0", "=", "-"
+];
+

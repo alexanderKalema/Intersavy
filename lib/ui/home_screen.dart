@@ -3,8 +3,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:android_app_development/models/my_appbar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:android_app_development/services/bloc/home_bloc.dart';
-import 'package:android_app_development/services/bloc/home_state.dart';
+import 'package:android_app_development/services/bloc/home/home_bloc.dart';
+import 'package:android_app_development/services/bloc/home/home_state.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

@@ -1,6 +1,6 @@
 import 'package:android_app_development/services/app_router.gr.dart';
-import 'package:android_app_development/services/bloc/home_bloc.dart';
-import 'package:android_app_development/services/bloc/home_event.dart';
+import 'package:android_app_development/services/bloc/home/home_bloc.dart';
+import 'package:android_app_development/services/bloc/home/home_event.dart';
 import 'package:android_app_development/services/stop_watch_service.dart';
 import 'package:android_app_development/utilities/my_theme.dart';
 import 'package:flutter/material.dart';
