@@ -18,9 +18,9 @@ import '../ui/calculator_screen.dart' as _i2;
 import '../ui/date_and_time_screen.dart' as _i5;
 import '../ui/home_screen.dart' as _i1;
 import '../ui/music_screen.dart' as _i6;
-import '../ui/now_playing_screen.dart' as _i7;
 import '../ui/puzzle_screen.dart' as _i3;
 import '../ui/stop_watch_screen.dart' as _i4;
+import '../ui/sub_screens/now_playing_screen.dart' as _i7;
 import 'music_service.dart' as _i10;
 
 class AppRouter extends _i8.RootStackRouter {

@@ -146,8 +146,8 @@ class SimpleCalculatorBloc extends Cubit<CalculatorState> {
   String _expressionHandler() {
     bool scientific = false;
 
-    scientificCalculatorKeys
-        .where((i) => !simpleCalculatorKeys.contains(i))
+    SCIENTIFIC_CALCULATOR_KEYS
+        .where((i) => !SIMPLE_CALCULTOR_KEYS.contains(i))
         .toList()
         .forEach((element) {
       if (state.mathEquation.contains(element)) {

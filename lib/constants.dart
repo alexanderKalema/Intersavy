@@ -15,7 +15,7 @@ const BUTTON_SECONDARY = Color(0xFFF6a43F);
 const ICON_COLOR = Color(0xFF414A4C);
 
 
-const List<String> simpleCalculatorKeys = [
+const SIMPLE_CALCULTOR_KEYS = [
   "AC", "⌫", "%", "/",
   "7", "8", "9", "*",
   "4", "5", "6", "-",
@@ -23,7 +23,7 @@ const List<String> simpleCalculatorKeys = [
   ".", "0", "", "="
 ];
 
-const scientificCalculatorKeys = [
+const SCIENTIFIC_CALCULATOR_KEYS = [
   "log", "ln", "asin", "acos",
   "atan", "(", ")", "sin",
   "cos", "tan", "ln2", "AC",
@@ -32,5 +32,11 @@ const scientificCalculatorKeys = [
   "π", "4", "5", "6", "*",
   "e", "1", "2", "3", "+",
   "%", ".", "0", "=", "-"
+];
+
+const RULES = [
+  "#1 The computer will generate a 4 digit number. Each digit will be unique. And 0 is not in the digits.",
+  "#2 For each guess, the computer will tell you how many digits you guessed correctly (magnitude), and how many of them are in the correct order (order). You can find this data in the previous tabs below.",
+  "#3 Try to make an educated guess to the number using previous data, and least amount number of trials."
 ];
 

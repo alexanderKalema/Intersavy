@@ -85,7 +85,7 @@ class _CalculatorScreenState extends State<CalculatorScreen>
                     )),
                 Keyboard(
                   isScientific: false,
-                  keyboardSigns: simpleCalculatorKeys,
+                  keyboardSigns: SIMPLE_CALCULTOR_KEYS,
                   onTap: context.read<SimpleCalculatorBloc>().calculate,
                 ),
               ]);
@@ -122,7 +122,7 @@ class _CalculatorScreenState extends State<CalculatorScreen>
                 ),
                 Keyboard(
                   isScientific: true,
-                  keyboardSigns: scientificCalculatorKeys,
+                  keyboardSigns: SCIENTIFIC_CALCULATOR_KEYS,
                   onTap: context.read<SimpleCalculatorBloc>().calculate,
                 ),
               ]);

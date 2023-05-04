@@ -6,8 +6,7 @@ import 'package:android_app_development/ui/music_screen.dart';
 import 'package:android_app_development/ui/puzzle_screen.dart';
 import 'package:android_app_development/ui/stop_watch_screen.dart';
 import 'package:android_app_development/ui/home_screen.dart';
-
-import '../ui/now_playing_screen.dart';
+import 'package:android_app_development/ui/sub_screens/now_playing_screen.dart';
 
 @MaterialAutoRouter(routes: [
   // MaterialRoute(page: LauncherScreen, initial: true),
