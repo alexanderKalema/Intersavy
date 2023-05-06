@@ -3,8 +3,8 @@ import 'package:android_app_development/services/bloc/puzzle/puzzle_bloc.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../models/generic_dialog.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:android_app_development/models/generic_dialog.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({Key? key}) : super(key: key);
@@ -25,15 +25,15 @@ class _GameScreenState extends State<GameScreen> {
         showGenericDialog(
           icon: Icons.rule,
             context: context,
-            title: 'Rules',
+            title:  AppLocalizations.of(context)!.rules,
             content: state.rule,
             optionsBuilder: state.rule.contains("3")? () => {
-            "Done" : (){
+            AppLocalizations.of(context)!.done : (){
               context.read<PuzzleBloc>().add(PuzzleFirstRun(rule:state.rule ) );
               context.router.popUntilRouteWithPath('/puzzle');
             }}:
                 () => {
-            "Next" : ()=> context.read<PuzzleBloc>().add(PuzzleFirstRun(rule:state.rule ) )})
+                AppLocalizations.of(context)!.next : ()=> context.read<PuzzleBloc>().add(PuzzleFirstRun(rule:state.rule ) )})
 
         ;
       }
@@ -76,9 +76,9 @@ class _GameScreenState extends State<GameScreen> {
                                 MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text(
-                                    "You got the number!!!",
-                                    style: TextStyle(fontSize: 20),
+                                   Text(
+                                    AppLocalizations.of(context)!.youGotTheNumber,
+                                    style: const TextStyle(fontSize: 20),
                                   ),
                                   Center(
                                     child: Text(
@@ -88,13 +88,13 @@ class _GameScreenState extends State<GameScreen> {
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
-                                  const Text(
-                                    "It took you",
-                                    style: TextStyle(fontSize: 16),
+                                   Text(
+                                    AppLocalizations.of(context)!.itTookYou,
+                                    style: const TextStyle(fontSize: 16),
                                   ),
                                   Center(
                                     child: Text(
-                                      "${state.trialCount} trials",
+                                      "${state.trialCount} ${ AppLocalizations.of(context)!.trials}",
                                       style: const TextStyle(
                                           fontSize: 32,
                                           fontWeight: FontWeight.bold),
@@ -109,13 +109,13 @@ class _GameScreenState extends State<GameScreen> {
                                 MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text(
-                                    "The number you entered has:",
-                                    style: TextStyle(fontSize: 20),
+                                   Text(
+                                    AppLocalizations.of(context)!.theNumberGuessed,
+                                    style: const TextStyle(fontSize: 20),
                                   ),
-                                  const Text(
-                                    "Magnitude:",
-                                    style: TextStyle(fontSize: 16),
+                                   Text(
+                                     AppLocalizations.of(context)!.magnitude,
+                                    style: const TextStyle(fontSize: 16),
                                   ),
                                   Center(
                                     child: Text(
@@ -125,9 +125,9 @@ class _GameScreenState extends State<GameScreen> {
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
-                                  const Text(
-                                    "Order:",
-                                    style: TextStyle(fontSize: 16),
+                                   Text(
+                                    AppLocalizations.of(context)!.order,
+                                    style: const TextStyle(fontSize: 16),
                                   ),
                                   Center(
                                     child: Text(
@@ -141,10 +141,10 @@ class _GameScreenState extends State<GameScreen> {
                               );
                             }
                             else if (state is PuzzleNewGame){
-                              return  const Center(
+                              return  Center(
                                 child: Text(
-                                  "Enter a number to start game",
-                                  style: TextStyle(fontSize: 20),
+                                  AppLocalizations.of(context)!.enterNumberToStart,
+                                  style: const TextStyle(fontSize: 20),
                                 ),
                               );
                             }
@@ -176,14 +176,14 @@ class _GameScreenState extends State<GameScreen> {
                             context.read<PuzzleBloc>().add(PuzzleTryAnother(currentGuess: int.parse(_numberController.text) ));
                           }
                             },
-                        fillColor: Color(0xFFdb6400),
+                        fillColor: const Color(0xFFdb6400),
                         height: 70,
                         width: 380,
                         isCircle: false,
                         child: Center(
                             child: Text(
-                              (state is PuzzleFinished)? "Play Another Game" : "Check Number",
-                          style: TextStyle(fontSize: 24),
+                              (state is PuzzleFinished)? AppLocalizations.of(context)!.playAnotherGame: AppLocalizations.of(context)!.checkNumber,
+                          style: const TextStyle(fontSize: 24),
                         )),
                       ),
                     ),
@@ -214,9 +214,9 @@ class _GameScreenState extends State<GameScreen> {
                           width: 120,
                           colorBlendMode: BlendMode.color,
                         ),
-                        const Text(
-                          "You won, Well Played !!",
-                          style: TextStyle(
+                         Text(
+                          AppLocalizations.of(context)!.youWonWellPlayed,
+                          style: const TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
                           ),
@@ -227,9 +227,9 @@ class _GameScreenState extends State<GameScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          "Enter a 4 - digit number:",
-                          style: TextStyle(
+                         Text(
+                          AppLocalizations.of(context)!.enterFourDigitNumber,
+                          style: const TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
                           ),
@@ -261,7 +261,7 @@ class _GameScreenState extends State<GameScreen> {
                                     return "Please enter a number";
                                   }
                                   if (value.length != 4) {
-                                    return "Please enter a 4 digit number";
+                                    return AppLocalizations.of(context)!.enterFourDigitNumber;
                                   }
                                   return null;
                                 },

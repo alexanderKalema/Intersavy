@@ -1,3 +1,5 @@
+import 'package:android_app_development/ui/boarding_screen.dart';
+import 'package:android_app_development/ui/introduction_screen.dart';
 import 'package:auto_route/auto_route.dart';
 
 import 'package:android_app_development/ui/calculator_screen.dart';
@@ -9,8 +11,9 @@ import 'package:android_app_development/ui/home_screen.dart';
 import 'package:android_app_development/ui/sub_screens/now_playing_screen.dart';
 
 @MaterialAutoRouter(routes: [
-  // MaterialRoute(page: LauncherScreen, initial: true),
-  MaterialRoute(page: HomeScreen, initial: true),
+  MaterialRoute(page: IntroductionScreen, path: '/intro', initial: true),
+  MaterialRoute(page: BoardingScreen, path: '/boarding'),
+  MaterialRoute(page: HomeScreen),
   MaterialRoute(page: CalculatorScreen, path: '/calculator'),
   MaterialRoute(page: PuzzleScreen, path: '/puzzle'),
   MaterialRoute(page: StopWatchScreen, path: '/stop-watch'),

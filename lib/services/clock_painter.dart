@@ -47,7 +47,7 @@ class AnalogClockPainter extends CustomPainter {
         Offset(centerX, centerY), radius - radius / 20, outerCirclePaint);
 
     // Draw the inner circle
-    canvas.drawCircle(Offset(centerX, centerY), radius / 10, innerCirclePaint);
+    canvas.drawCircle(Offset(centerX, centerY), radius / 20, innerCirclePaint);
 
     // Draw the hour labels
     for (var i = 1; i <= 12; i++) {
@@ -59,8 +59,8 @@ class AnalogClockPainter extends CustomPainter {
         text: i.toString(),
         style: TextStyle(
           fontFamily: 'PoppinsRegular',
-          color: SECONDARY_TEXT_COLOR,
-            fontSize: radius / 7,
+          color: (i%3 == 0)?CLOCK_HOUR_HAND : SECONDARY_TEXT_COLOR ,
+            fontSize: (i%3 == 0)? radius/5 :radius /9,
             fontWeight: FontWeight.bold,
             ),
       );

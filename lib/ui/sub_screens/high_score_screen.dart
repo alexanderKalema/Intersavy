@@ -1,5 +1,8 @@
 import 'package:android_app_development/services/database_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+
 
 class HighScore extends StatefulWidget {
   const HighScore({Key? key}) : super(key: key);
@@ -23,15 +26,16 @@ class _HighScoreState extends State<HighScore> {
         color: Color(0xFF094074),
         child: Column(children: [
           Container(
-            margin: EdgeInsets.only(bottom: 40) ,
+            margin: const EdgeInsets.only(bottom: 40) ,
               width: MediaQuery.of(context).size.width,
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    SizedBox(height: 80),
+                  children:  [
+                    const SizedBox(height: 80),
                     Center(
-                      child: Text("High Score",
-                          style: TextStyle(
+                      child: Text(
+                          AppLocalizations.of(context)!.highScore,
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 40,
                             letterSpacing: 1.0,
@@ -42,21 +46,21 @@ class _HighScoreState extends State<HighScore> {
           Row(
             mainAxisAlignment:
             MainAxisAlignment.spaceEvenly,
-            children: const [
+            children:  [
               Text(
-                "Date",
-                style: TextStyle(
+                AppLocalizations.of(context)!.date,
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 50,
               ),
               Text(
-                "Trials",
-                style: TextStyle(
+                AppLocalizations.of(context)!.trials,
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,

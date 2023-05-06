@@ -1,7 +1,10 @@
+import 'dart:ui';
+
 import 'package:android_app_development/models/generic_circle.dart';
 import 'package:android_app_development/services/clock_painter.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:android_app_development/models/my_appbar.dart';
 import 'package:android_app_development/constants.dart';
 
@@ -31,8 +34,8 @@ class _DateAndTimeScreenState extends State<DateAndTimeScreen> {
   Widget build(BuildContext context) {
     final DateTime dateTime = DateTime.now();
     return Scaffold(
-        appBar: const MyAppBar(
-          title: "Date and Time App",
+        appBar:  MyAppBar(
+          title: AppLocalizations.of(context)!.dateAndTimeApp,
         ),
         body: SizedBox.expand(
           child: Padding(
@@ -41,13 +44,13 @@ class _DateAndTimeScreenState extends State<DateAndTimeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text(
-                  "Today is",
-                  style: TextStyle(fontSize: 25),
+                 Text(
+                  AppLocalizations.of(context)!.todayIs,
+                  style: const TextStyle(fontSize: 25),
                 ),
                 Text(
-                    DateFormat.yMMMMd('en_US').format(dateTime),
-                  style: TextStyle(fontSize: 45),),
+                    DateFormat.yMMMMd( window.locale.toString()).format(dateTime),
+                  style: const TextStyle(fontSize: 45),),
                 GenericCircle(
                   fillColor:  BUTTON_PRIMARY,
                     height: _isAnalog ? 300 : 100,
@@ -59,7 +62,7 @@ class _DateAndTimeScreenState extends State<DateAndTimeScreen> {
                             : DigitalClockPainter())),
                 const SizedBox(),
                 GenericCircle(
-                  width: 150,
+                  width: 200,
                   height: 50,
                   isCircle: false,
                   onTap: () {
@@ -70,7 +73,7 @@ class _DateAndTimeScreenState extends State<DateAndTimeScreen> {
                   fillColor:  BUTTON_PRIMARY,
                   child: Center(
                     child: Text(
-                      _isAnalog ? "Change to digital" : "Change to analog",
+                      _isAnalog ? AppLocalizations.of(context)!.changeToDigital : AppLocalizations.of(context)!.changeToAnalog,
                       style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,

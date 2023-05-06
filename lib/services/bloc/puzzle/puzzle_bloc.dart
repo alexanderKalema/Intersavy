@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'dart:math';
 import 'package:bloc/bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,8 +27,8 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     prefs = await SharedPreferences.getInstance();
     isIntroduced = prefs.getBool('isIntroduced') ?? false;
     if (!isIntroduced && !(event.rule?.contains("3") ?? false)) {
-      print("in bloc with rule now${RULES[RULES.indexOf(event.rule ?? '') + 1]}");
-      emit(PuzzleInitial(rule: RULES[RULES.indexOf(event.rule ?? '') + 1]));
+     // print("in bloc with rule now${RULES[window.locale]![RULES[window.locale].indexOf(event.rule ?? '') + 1]}");
+      emit(PuzzleInitial(rule: RULES [window.locale.toString()]! [RULES [window.locale.toString()]!.indexOf(event.rule ?? '') + 1]));
     } else {
       print("sanamonicca");
       await prefs.setBool('isIntroduced', true);

@@ -1,6 +1,7 @@
 import 'package:android_app_development/services/bloc/puzzle/puzzle_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PreviousAttemptScreen extends StatefulWidget {
   const PreviousAttemptScreen({Key? key}) : super(key: key);
@@ -34,10 +35,9 @@ class _PreviousAttemptScreenState extends State<PreviousAttemptScreen> {
                   borderRadius: const BorderRadius.all(Radius.circular(30))),
               child: Column(
                 children: [
-
-                  const Center(child: Text(
-                      "Previous Attempts",
-                    style: TextStyle(
+                  Center(child: Text(
+                    AppLocalizations.of(context)!.previousAttempt,
+                    style: const TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
                     ),
@@ -46,18 +46,18 @@ class _PreviousAttemptScreenState extends State<PreviousAttemptScreen> {
                   const SizedBox(height: 30,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const [
-                      Text(" #"),
-                      Text("Guessed Number",
-                        style: TextStyle(
+                    children:  [
+                      Text(AppLocalizations.of(context)!.number),
+                      Text(AppLocalizations.of(context)!.guessedNumber,
+                        style: const TextStyle(
                           fontSize: 14,
                         ),),
-                      Text("Magnitude",
-                        style: TextStyle(
+                      Text(AppLocalizations.of(context)!.magnitude,
+                        style: const TextStyle(
                           fontSize: 14,
                         ),),
-                      Text("Order",
-                        style: TextStyle(
+                      Text(AppLocalizations.of(context)!.order,
+                        style: const TextStyle(
                           fontSize: 14,
                         ),)
                     ],
@@ -110,9 +110,11 @@ class _PreviousAttemptScreenState extends State<PreviousAttemptScreen> {
                       }
                       else{
                         return Column(
-                          children: const [
-                            SizedBox(height: 180,),
-                            Text("No attempts made!",  style: TextStyle(
+                          children:  [
+                            const SizedBox(height: 180,),
+                            Text(
+                              AppLocalizations.of(context)!.noAttemptsMade,
+                              style: const TextStyle(
                               fontSize: 16,
                             ),),
                           ],

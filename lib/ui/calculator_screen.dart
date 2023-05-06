@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../constants.dart';
-import '../services/bloc/calculator/calculator_bloc.dart';
-import '../models/keyboard.dart';
+import 'package:android_app_development/constants.dart';
+import 'package:android_app_development/services/bloc/calculator/calculator_bloc.dart';
+import 'package:android_app_development/models/keyboard.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CalculatorScreen extends StatefulWidget {
   const CalculatorScreen({Key? key}) : super(key: key);
@@ -27,15 +28,15 @@ class _CalculatorScreenState extends State<CalculatorScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Calcultor App'),
+        title:  Text(AppLocalizations.of(context)!.calculatorApp),
         bottom: TabBar(
           labelColor: Colors.black,
           controller: _tabController,
-          tabs: const [
-            Tab(icon: Icon(Icons.calculate_outlined), text: 'Basic Calculator'),
+          tabs:  [
+            Tab(icon: const Icon(Icons.calculate_outlined), text: AppLocalizations.of(context)!.basicCalculator),
             Tab(
-                icon: Icon(Icons.calculate_rounded),
-                text: 'Scientific Calculator'),
+                icon: const Icon(Icons.calculate_rounded),
+                text: AppLocalizations.of(context)!.scientificCalculator),
           ],
         ),
       ),

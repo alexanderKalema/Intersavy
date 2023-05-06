@@ -4,7 +4,7 @@ import 'package:android_app_development/ui/sub_screens/high_score_screen.dart';
 import 'package:android_app_development/ui/sub_screens/previous_attempt_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:android_app_development/services/bloc/puzzle/puzzle_bloc.dart';
 
 class PuzzleScreen extends StatefulWidget {
@@ -25,7 +25,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
       create: (_) => PuzzleBloc()..add(PuzzleFirstRun()),
       child: Scaffold(
         appBar: MyAppBar(
-          title: 'Puzzle Screen',
+          title: AppLocalizations.of(context)!.puzzleApp,
         ),
         body: PageView(
           controller: _pageController,
@@ -47,23 +47,23 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
               _currentIndex = index;
               _pageController.animateToPage(
                 index,
-                duration: Duration(milliseconds: 500),
+                duration: const Duration(milliseconds: 500),
                 curve: Curves.ease,
               );
             });
           },
-          items: const [
+          items:  [
              BottomNavigationBarItem(
-              icon: Icon(Icons.question_mark_sharp),
-              label: 'Puzzle',
+              icon: const Icon(Icons.question_mark_sharp),
+              label:  AppLocalizations.of(context)!.puzzle,
             ),
              BottomNavigationBarItem(
-              icon: Icon(Icons.preview_outlined),
-              label: 'Previous',
+              icon: const Icon(Icons.preview_outlined),
+              label:  AppLocalizations.of(context)!.previous,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.score_outlined),
-              label: 'High Score',
+              icon: const Icon(Icons.score_outlined),
+              label:  AppLocalizations.of(context)!.highScore,
             ),
           ],
         ),

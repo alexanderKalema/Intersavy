@@ -3,6 +3,7 @@ import 'package:android_app_development/models/generic_circle.dart';
 import 'package:android_app_development/services/stop_watch_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:android_app_development/models/my_appbar.dart';
 
 class StopWatchScreen extends StatefulWidget {
@@ -18,8 +19,8 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
     final myNotifier = context.read<DateAndTimeProvider>();
 
     return Scaffold(
-      appBar: const MyAppBar(
-        title: "Stop Watch App",
+      appBar: MyAppBar(
+        title: AppLocalizations.of(context)!.stopWatchApp,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -27,9 +28,9 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              const Text(
-                "Saved Laps",
-                style: TextStyle(fontSize: 24),
+               Text(
+                AppLocalizations.of(context)!.savedLaps,
+                style: const TextStyle(fontSize: 24),
               ),
               Container(
                 decoration: BoxDecoration(
@@ -41,16 +42,20 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
 
                 child: Column(
                   children: [
+                    
                     ListTile(
-                      leading: const Text('#'),
-                      title: Row(
-                        children: const [
-                          Text("Overall lap"),
-                          SizedBox(
-                            width: 50,
-                          ),
-                          Text("Since last lap"),
-                        ],
+                      leading:  Text( AppLocalizations.of(context)!.number),
+                      title: SingleChildScrollView(
+scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            Text( AppLocalizations.of(context)!.overAllLap),
+                            const SizedBox(
+                              width: 50,
+                            ),
+                            Text(AppLocalizations.of(context)!.sinceLastLap),
+                          ],
+                        ),
                       ),
                     ),
                     Padding(
@@ -90,10 +95,10 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
                                     ),
                                   );
                                 })
-                            : const Center(
+                            : Center(
                                 child: Text(
-                                  " No saved laps , use button to save lap",
-                                  style: TextStyle(fontSize: 16),
+                                  AppLocalizations.of(context)!.noSavedLaps,
+                                  style: const TextStyle(fontSize: 16),
                                 ),
                               ),
                       ),
@@ -177,10 +182,10 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
                     setState(() {});
                   },
                   fillColor: BUTTON_PRIMARY,
-                  child: const Center(
+                  child:  Center(
                     child: Text(
-                      "Save Lap",
-                      style: TextStyle(
+                      AppLocalizations.of(context)!.saveLap,
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
