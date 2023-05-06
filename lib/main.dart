@@ -1,10 +1,11 @@
 import 'package:android_app_development/services/app_router.gr.dart';
-import 'package:android_app_development/services/bloc/home_bloc.dart';
-import 'package:android_app_development/services/bloc/home_event.dart';
+import 'package:android_app_development/services/bloc/home/home_bloc.dart';
 import 'package:android_app_development/services/stop_watch_service.dart';
 import 'package:android_app_development/utilities/my_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -13,7 +14,7 @@ void main() {
       create: (_) => DateAndTimeProvider(),
     ),
     BlocProvider<HomeBloc>(
-      create: (_) => HomeBloc()..add(FinishedOnBoardingEvent()),
+      create: (_) => HomeBloc()..add(FirstRunEvent()),
     ),
   ], child: const MyApp()));
 }
@@ -34,6 +35,16 @@ class _MyAppState extends State<MyApp> {
         theme: myTheme,
         routerDelegate: _appRouter.delegate(),
         routeInformationParser: _appRouter.defaultRouteParser(),
-        debugShowCheckedModeBanner: false);
+        debugShowCheckedModeBanner: false,
+    //  locale: context.watch<AccountBloc>().appLocal,
+        supportedLocales: AppLocalizations.supportedLocales,
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ]
+
+    );
   }
 }

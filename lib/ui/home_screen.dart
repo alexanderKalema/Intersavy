@@ -1,35 +1,27 @@
 import 'package:android_app_development/models/generic_card.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:android_app_development/models/my_appbar.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:android_app_development/services/bloc/home_bloc.dart';
-import 'package:android_app_development/services/bloc/home_state.dart';
+
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+ final List<Map<String, dynamic>> topics;
+  const HomeScreen({Key? key,required this.topics}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Map<String, dynamic>> topics = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const MyAppBar(
-          title: "Welcome to my app",
+        appBar:  MyAppBar(
+          title: AppLocalizations.of(context)!.welcomeToMyApp,
         ),
-        body: BlocConsumer<HomeBloc, HomeState>(
-          listener: (context, state) {
-            if (state is FinishedOnBoardingState) {
-              topics = state.topics;
-            }
-          },
-          builder: (context, state){
-            if(state is FinishedOnBoardingState){
-              return   Column(
+        body:    Column(
                 children: [
                   Flexible(
                     child: Padding(
@@ -41,25 +33,21 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisCount: 1,
                           childAspectRatio: 1.2 ,
                         ),
-                        itemCount: topics.length,
+                        itemCount: widget.topics.length,
                         itemBuilder: (context, index) => GenericCard(
-                          description: topics[index] ['description'],
-                          title: topics[index] ['title'],
-                          icon: topics[index] ['icon'],
+                          description: widget.topics[index] ['description'],
+                          title: widget.topics[index] ['title'],
+                          icon: widget.topics[index] ['icon'],
                           onTap: () {
-                            context.router.pushNamed(topics[index] ['path']);
+                            context.router.pushNamed(widget.topics[index] ['path']);
                           },
                         ),
                       ),
                     ),
                   ),
                 ],
-              );
-            }
-            else{
-              return const Center(child: CircularProgressIndicator());
-            }
-          },
-        ));
+        )   );
+
+
   }
 }

@@ -5,6 +5,7 @@ import 'package:on_audio_query/on_audio_query.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:android_app_development/services/permission_handling_service.dart';
 import 'package:android_app_development/models/my_appbar.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:android_app_development/services/music_service.dart';
 
 class MusicScreen extends StatefulWidget {
@@ -20,8 +21,8 @@ class _MusicScreenState extends State<MusicScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const MyAppBar(
-          title: "Music App",
+        appBar:  MyAppBar(
+          title: AppLocalizations.of(context)!.musicApp,
         ),
         body: SizedBox.expand(
           child: FutureBuilder<PermissionStatus>(
@@ -42,7 +43,7 @@ class _MusicScreenState extends State<MusicScreen> {
                           return const Center(
                               child: CircularProgressIndicator());
                         } else if (snapshot.data!.isEmpty) {
-                          return const Center(child: Text("No song found!"));
+                          return  Center(child: Text(AppLocalizations.of(context)!.noSongs));
                         } else {
                           return SoundsListInheritedNotifier(
                             soundsList: SoundsList(

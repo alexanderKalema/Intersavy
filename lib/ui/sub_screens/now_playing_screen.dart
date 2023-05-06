@@ -5,6 +5,7 @@ import 'package:android_app_development/services/music_service.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:android_app_development/services/app_router.gr.dart';
 
 class NowPlaying extends StatefulWidget {
@@ -34,8 +35,8 @@ class _NowPlayingState extends State<NowPlaying> {
       create: (context) => widget.customSound,
       child: Consumer<CustomSound>(builder: (context, value, child) {
         return Scaffold(
-          appBar: const MyAppBar(
-            title: 'Now Playing',
+          appBar:  MyAppBar(
+            title: AppLocalizations.of(context)!.nowPlaying,
           ),
           body: SizedBox.expand(
               child: Padding(
@@ -65,7 +66,7 @@ class _NowPlayingState extends State<NowPlaying> {
                   ),
                 ),
                 Text(
-                  "Name: ${value.songName}",
+                  "${AppLocalizations.of(context)!.name}: ${value.songName}",
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
@@ -73,7 +74,7 @@ class _NowPlayingState extends State<NowPlaying> {
                   ),
                 ),
                 Text(
-                  "Artist: ${value.artistName}",
+                  "${AppLocalizations.of(context)!.artist}: ${value.artistName}",
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,

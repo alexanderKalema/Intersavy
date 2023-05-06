@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GenericCard extends StatefulWidget {
   final IconData icon;
@@ -91,36 +91,38 @@ class _GenericCardState extends State<GenericCard>
                           alignment: Alignment.center,
                           transform: Matrix4.rotationY(pi),
                           child: SingleChildScrollView(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment:  CrossAxisAlignment.center ,
-                              children: [
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                crossAxisAlignment:  CrossAxisAlignment.center ,
+                                children: [
 
-                                Text(widget.description),
-                                InkWell(
-                                  onTap: _toggleCard,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const [
-
-                                      Icon(
-                                        Icons.arrow_back,
-                                        size: 25,
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        "Back to main card",
-                                        style: TextStyle(
-                                          fontSize: 15,
+                                  Text(widget.description),
+                                  InkWell(
+                                    onTap: _toggleCard,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children:  [
+                                        const Icon(
+                                          Icons.arrow_back,
+                                          size: 25,
                                         ),
-                                      ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          AppLocalizations.of(context)!.backToMain,
+                                          style: const TextStyle(
+                                            fontSize: 15,
+                                          ),
+                                        ),
 
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           )
                         )
@@ -147,17 +149,17 @@ class _GenericCardState extends State<GenericCard>
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: const [
+                                  children:  [
                                     Text(
-                                        "Description",
-                                      style: TextStyle(
+                                      AppLocalizations.of(context)!.description,
+                                      style: const TextStyle(
                                         fontSize: 15,
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
-                                   Icon(
+                                   const Icon(
                                              Icons.arrow_forward,
                                         size: 25,
                                     ),
