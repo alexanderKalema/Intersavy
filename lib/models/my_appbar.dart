@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:android_app_development/constants.dart';
 
 class MyAppBar extends StatelessWidget with PreferredSizeWidget {
+  @override
   final Size preferredSize;
   final String title;
 
@@ -17,7 +18,7 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget {
       elevation: 1,
       titleSpacing: 50,
       title: Text(title),
-      shadowColor:  APPBAR_SHADOW_COLOR,
+      shadowColor: APPBAR_SHADOW_COLOR,
     );
   }
 }

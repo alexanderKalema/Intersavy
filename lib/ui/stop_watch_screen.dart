@@ -28,28 +28,26 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-               Text(
+              Text(
                 AppLocalizations.of(context)!.savedLaps,
                 style: const TextStyle(fontSize: 24),
               ),
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: SECONDARY_TEXT_COLOR.withOpacity(0.1),
                   border: Border.all(
-                    color: Colors.black.withOpacity(0.3),
+                    color: MUSIC_NOTE_COLOR.withOpacity(0.3),
                   ),
                 ),
-
                 child: Column(
                   children: [
-                    
                     ListTile(
-                      leading:  Text( AppLocalizations.of(context)!.number),
+                      leading: Text(AppLocalizations.of(context)!.number),
                       title: SingleChildScrollView(
-scrollDirection: Axis.horizontal,
+                        scrollDirection: Axis.horizontal,
                         child: Row(
                           children: [
-                            Text( AppLocalizations.of(context)!.overAllLap),
+                            Text(AppLocalizations.of(context)!.overAllLap),
                             const SizedBox(
                               width: 50,
                             ),
@@ -62,8 +60,7 @@ scrollDirection: Axis.horizontal,
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: Container(
                         height: 1.0,
-                        // width:Sizes.getTotalWidth(context)*0.2,
-                        color: Colors.black.withOpacity(0.2),
+                        color: MUSIC_NOTE_COLOR.withOpacity(0.2),
                       ),
                     ),
                     SingleChildScrollView(
@@ -136,10 +133,9 @@ scrollDirection: Axis.horizontal,
                       fillColor: BUTTON_PRIMARY,
                       onTap: myNotifier.pauseOrPlay,
                       child: Icon(
-                        myNotifier.isRunning ? Icons.pause : Icons.play_arrow,
-                        size: 50,
-                        color: Colors.black
-                      ),
+                          myNotifier.isRunning ? Icons.pause : Icons.play_arrow,
+                          size: 50,
+                          color: MUSIC_NOTE_COLOR),
                     );
                   },
                 ),
@@ -156,11 +152,8 @@ scrollDirection: Axis.horizontal,
                     myNotifier.savedLaps.clear();
                     setState(() {});
                   },
-                  child: const Icon(
-                    Icons.refresh,
-                    size: 50,
-                      color: Colors.black
-                  ),
+                  child:
+                      const Icon(Icons.refresh, size: 50, color: MUSIC_NOTE_COLOR),
                 ),
                 const SizedBox(
                   width: 15,
@@ -182,11 +175,11 @@ scrollDirection: Axis.horizontal,
                     setState(() {});
                   },
                   fillColor: BUTTON_PRIMARY,
-                  child:  Center(
+                  child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.saveLap,
                       style: const TextStyle(
-                        color: Colors.black,
+                        color: MUSIC_NOTE_COLOR,
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
                       ),

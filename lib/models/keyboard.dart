@@ -6,7 +6,8 @@ typedef CallbackButtonTap = void Function({String buttonText});
 
 class Keyboard extends StatelessWidget {
   const Keyboard(
-      {super.key, required this.onTap,
+      {super.key,
+      required this.onTap,
       required this.keyboardSigns,
       required this.isScientific});
 
@@ -40,12 +41,12 @@ class Keyboard extends StatelessWidget {
                     ? BUTTON_SECONDARY
                     : (index < 4)
                         ? BUTTON_PRIMARY
-                        : Colors.white54
+                        : CLOCK_OUTER_CIRCLE
                 : (index % 5 == 0 || index < 15)
                     ? BUTTON_PRIMARY
                     : (index % 5 == 4)
                         ? BUTTON_SECONDARY
-                        : Colors.white,
+                        : SECONDARY_TEXT_COLOR,
             child: Center(
                 child: Text(
               keyboardSigns[index],

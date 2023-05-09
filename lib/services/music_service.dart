@@ -43,8 +43,8 @@ class CustomSound extends ChangeNotifier {
   final int _duration;
   final AudioPlayer audioPlayer = AudioPlayer();
   bool _isPlaying = false;
-  Duration position = Duration();
-  Duration duration = Duration();
+  Duration position = const Duration();
+  Duration duration = const Duration();
   double _value = 0.0;
   final SongModel model;
 
@@ -115,7 +115,7 @@ class CustomSound extends ChangeNotifier {
 }
 
 class SoundsListInheritedNotifier extends InheritedNotifier<SoundsList> {
-  SoundsListInheritedNotifier(
+  const SoundsListInheritedNotifier(
       {Key? key, required SoundsList soundsList, required Widget child})
       : super(key: key, notifier: soundsList, child: child);
 

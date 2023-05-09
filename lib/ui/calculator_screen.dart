@@ -28,12 +28,14 @@ class _CalculatorScreenState extends State<CalculatorScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text(AppLocalizations.of(context)!.calculatorApp),
+        title: Text(AppLocalizations.of(context)!.calculatorApp),
         bottom: TabBar(
-          labelColor: Colors.black,
+          labelColor: MUSIC_NOTE_COLOR,
           controller: _tabController,
-          tabs:  [
-            Tab(icon: const Icon(Icons.calculate_outlined), text: AppLocalizations.of(context)!.basicCalculator),
+          tabs: [
+            Tab(
+                icon: const Icon(Icons.calculate_outlined),
+                text: AppLocalizations.of(context)!.basicCalculator),
             Tab(
                 icon: const Icon(Icons.calculate_rounded),
                 text: AppLocalizations.of(context)!.scientificCalculator),
@@ -44,20 +46,20 @@ class _CalculatorScreenState extends State<CalculatorScreen>
         controller: _tabController,
         children: [
           BlocProvider(
-            create: (context) => SimpleCalculatorBloc(),
-            child: BlocConsumer<SimpleCalculatorBloc, CalculatorState>(
+            create: (context) => SimpleCalculatorCubit(),
+            child: BlocConsumer<SimpleCalculatorCubit, CalculatorState>(
                 listener: (context, state) {
               if (state is CalcError) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(state.error),
-                    backgroundColor: Colors.red,
+                    backgroundColor: CALCULATOR_ERROR_BACKGROUND,
                   ),
                 );
               }
             }, builder: (context, state) {
               return Column(children: [
-                Expanded(child: SizedBox()),
+                const Expanded(child: SizedBox()),
                 Padding(
                     padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                     child: SizedBox(
@@ -87,36 +89,40 @@ class _CalculatorScreenState extends State<CalculatorScreen>
                 Keyboard(
                   isScientific: false,
                   keyboardSigns: SIMPLE_CALCULTOR_KEYS,
-                  onTap: context.read<SimpleCalculatorBloc>().calculate,
+                  onTap: context.read<SimpleCalculatorCubit>().calculate,
                 ),
               ]);
             }),
           ),
           BlocProvider(
-            create: (context) => SimpleCalculatorBloc(),
-            child: BlocConsumer<SimpleCalculatorBloc, CalculatorState>(
+            create: (context) => SimpleCalculatorCubit(),
+            child: BlocConsumer<SimpleCalculatorCubit, CalculatorState>(
                 listener: (context, state) {
               if (state is CalcError) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(state.error),
-                    backgroundColor: Colors.blue,
+                    backgroundColor: CALCULATOR_ERROR_BACKGROUND,
                   ),
                 );
               }
             }, builder: (context, state) {
               return Column(children: [
-                Expanded(child: SizedBox()),
+                const Expanded(child: SizedBox()),
                 Padding(
-                  padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                  padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                   child: SizedBox(
                     width: double.infinity,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
-                        _inOutExpression(state.mathEquation ,state.equationFontSize),
-                        state.mathResult != '' ? _inOutExpression(state.mathResult, state.resultFontSize) : Container(),
+                        _inOutExpression(
+                            state.mathEquation, state.equationFontSize),
+                        state.mathResult != ''
+                            ? _inOutExpression(
+                                state.mathResult, state.resultFontSize)
+                            : Container(),
                       ],
                     ),
                   ),
@@ -124,7 +130,7 @@ class _CalculatorScreenState extends State<CalculatorScreen>
                 Keyboard(
                   isScientific: true,
                   keyboardSigns: SCIENTIFIC_CALCULATOR_KEYS,
-                  onTap: context.read<SimpleCalculatorBloc>().calculate,
+                  onTap: context.read<SimpleCalculatorCubit>().calculate,
                 ),
               ]);
             }),
@@ -143,7 +149,7 @@ class _CalculatorScreenState extends State<CalculatorScreen>
         child: Text(
           text is double ? text.toStringAsFixed(2) : text.toString(),
           style: TextStyle(
-            color: Color(0xFF444444),
+            color: CALCULATOR_KEYS_COLOR,
             fontSize: size,
           ),
         ),

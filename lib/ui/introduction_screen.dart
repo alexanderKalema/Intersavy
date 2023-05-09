@@ -26,9 +26,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
             context.router.replace(HomeScreenRoute(topics: state.topics));
           } else if (state is FirstRunState) {
             context.router.push(const BoardingScreenRoute());
-          } else {
-
-          }
+          } else {}
         },
         child: const Center(
           child: Scaffold(
