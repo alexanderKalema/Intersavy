@@ -7,6 +7,12 @@ ThemeData myTheme = ThemeData(
   iconTheme: const IconThemeData(
     color: ICON_COLOR,
   ),
+  outlinedButtonTheme: OutlinedButtonThemeData(
+    style: OutlinedButton.styleFrom(
+        side: const BorderSide(color: Colors.white),
+        shape: const StadiumBorder()
+    ),
+  ),
   appBarTheme: const AppBarTheme(
     color: Colors.white,
     iconTheme: IconThemeData(

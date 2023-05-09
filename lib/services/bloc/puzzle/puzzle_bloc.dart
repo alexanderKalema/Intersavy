@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:android_app_development/constants.dart';
 import 'package:android_app_development/services/database_service.dart';
+
 part 'puzzle_state.dart';
 
 part 'puzzle_event.dart';
@@ -21,19 +22,16 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     on<PuzzleTryAnother>(_onPuzzleTryAnother);
   }
 
-
   _onPuzzleFirstRun(PuzzleFirstRun event, emit) async {
-    print("not even come here very good");
     prefs = await SharedPreferences.getInstance();
     isIntroduced = prefs.getBool('isIntroduced') ?? false;
     if (!isIntroduced && !(event.rule?.contains("3") ?? false)) {
-     // print("in bloc with rule now${RULES[window.locale]![RULES[window.locale].indexOf(event.rule ?? '') + 1]}");
-      emit(PuzzleInitial(rule: RULES [window.locale.toString()]! [RULES [window.locale.toString()]!.indexOf(event.rule ?? '') + 1]));
+      emit(PuzzleInitial(
+          rule: RULES[window.locale.toString()]![
+              RULES[window.locale.toString()]!.indexOf(event.rule ?? '') + 1]));
     } else {
-      print("sanamonicca");
       await prefs.setBool('isIntroduced', true);
       _onPuzzleStartGame(event, emit);
-
     }
   }
 
@@ -76,7 +74,6 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
       }
     });
 
-    print("${currentMagnitude} ${currentOrder} ${computerGuess}");
     if (currentMagnitude == 4 && currentOrder == 4) {
       DatabaseService mydb = DatabaseService();
       await mydb.createScore(score: trialCount.toString());

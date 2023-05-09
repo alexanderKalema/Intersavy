@@ -21,7 +21,7 @@ class _MusicScreenState extends State<MusicScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar:  MyAppBar(
+        appBar: MyAppBar(
           title: AppLocalizations.of(context)!.musicApp,
         ),
         body: SizedBox.expand(
@@ -43,7 +43,9 @@ class _MusicScreenState extends State<MusicScreen> {
                           return const Center(
                               child: CircularProgressIndicator());
                         } else if (snapshot.data!.isEmpty) {
-                          return  Center(child: Text(AppLocalizations.of(context)!.noSongs));
+                          return Center(
+                            child: Text(AppLocalizations.of(context)!.noSongs),
+                          );
                         } else {
                           return SoundsListInheritedNotifier(
                             soundsList: SoundsList(
@@ -57,15 +59,19 @@ class _MusicScreenState extends State<MusicScreen> {
                                   final current = instance.atIndex(index);
                                   return ListTile(
                                     isThreeLine: true,
-                                    contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 15),
+                                    contentPadding: const EdgeInsets.symmetric(
+                                      vertical: 4,
+                                      horizontal: 15,
+                                    ),
                                     title: Text(current.songName),
                                     subtitle: Text(current.artistName),
                                     leading: const Icon(Icons.music_note),
                                     trailing: Text(current.durationTime),
                                     onTap: () {
                                       context.router.push(NowPlayingRoute(
-                                          soundsList: instance,
-                                          customSound: current));
+                                        soundsList: instance,
+                                        customSound: current,
+                                      ));
                                     },
                                   );
                                 }),

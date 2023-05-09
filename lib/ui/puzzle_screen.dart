@@ -15,13 +15,12 @@ class PuzzleScreen extends StatefulWidget {
 }
 
 class _PuzzleScreenState extends State<PuzzleScreen> {
-
   final PageController _pageController = PageController(initialPage: 0);
   int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return  BlocProvider(
+    return BlocProvider(
       create: (_) => PuzzleBloc()..add(PuzzleFirstRun()),
       child: Scaffold(
         appBar: MyAppBar(
@@ -35,9 +34,9 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
             });
           },
           children: const [
-              GameScreen(),
+            GameScreen(),
             PreviousAttemptScreen(),
-          HighScore(),
+            HighScore(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -52,18 +51,18 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
               );
             });
           },
-          items:  [
-             BottomNavigationBarItem(
+          items: [
+            BottomNavigationBarItem(
               icon: const Icon(Icons.question_mark_sharp),
-              label:  AppLocalizations.of(context)!.puzzle,
+              label: AppLocalizations.of(context)!.puzzle,
             ),
-             BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: const Icon(Icons.preview_outlined),
-              label:  AppLocalizations.of(context)!.previous,
+              label: AppLocalizations.of(context)!.previous,
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.score_outlined),
-              label:  AppLocalizations.of(context)!.highScore,
+              label: AppLocalizations.of(context)!.highScore,
             ),
           ],
         ),

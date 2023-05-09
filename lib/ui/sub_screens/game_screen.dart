@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:android_app_development/models/generic_dialog.dart';
+import 'package:android_app_development/constants.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({Key? key}) : super(key: key);
@@ -19,27 +20,29 @@ class _GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<PuzzleBloc, PuzzleState>(listener: (context, state) {
-
       if (state is PuzzleInitial) {
-
         showGenericDialog(
-          icon: Icons.rule,
+            icon: Icons.rule,
             context: context,
-            title:  AppLocalizations.of(context)!.rules,
+            title: AppLocalizations.of(context)!.rules,
             content: state.rule,
-            optionsBuilder: state.rule.contains("3")? () => {
-            AppLocalizations.of(context)!.done : (){
-              context.read<PuzzleBloc>().add(PuzzleFirstRun(rule:state.rule ) );
-              context.router.popUntilRouteWithPath('/puzzle');
-            }}:
-                () => {
-                AppLocalizations.of(context)!.next : ()=> context.read<PuzzleBloc>().add(PuzzleFirstRun(rule:state.rule ) )})
-
-        ;
+            optionsBuilder: state.rule.contains("3")
+                ? () => {
+                      AppLocalizations.of(context)!.done: () {
+                        context
+                            .read<PuzzleBloc>()
+                            .add(PuzzleFirstRun(rule: state.rule));
+                        context.router.popUntilRouteWithPath('/puzzle');
+                      }
+                    }
+                : () => {
+                      AppLocalizations.of(context)!.next: () => context
+                          .read<PuzzleBloc>()
+                          .add(PuzzleFirstRun(rule: state.rule))
+                    });
       }
     }, builder: (context, state) {
       return Stack(
-        // alignment: AlignmentDirectional.bottomCenter,
         children: [
           Image.asset(
             'assets/images/36224.jpg',
@@ -61,128 +64,129 @@ class _GameScreenState extends State<GameScreen> {
                       height: 350,
                       width: 360,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 20),
-                        decoration: const BoxDecoration(
-
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30))),
-                        child:
-                        Builder(
-                          builder: (context) {
-                            if(state is PuzzleFinished){
-                              return Column(
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                   Text(
-                                    AppLocalizations.of(context)!.youGotTheNumber,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 20),
+                          decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30))),
+                          child: Builder(
+                            builder: (context) {
+                              if (state is PuzzleFinished) {
+                                return Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      AppLocalizations.of(context)!
+                                          .youGotTheNumber,
+                                      style: const TextStyle(fontSize: 20),
+                                    ),
+                                    Center(
+                                      child: Text(
+                                        state.computerGuess,
+                                        style: const TextStyle(
+                                            fontSize: 32,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    Text(
+                                      AppLocalizations.of(context)!.itTookYou,
+                                      style: const TextStyle(fontSize: 16),
+                                    ),
+                                    Center(
+                                      child: Text(
+                                        "${state.trialCount} ${AppLocalizations.of(context)!.trials}",
+                                        style: const TextStyle(
+                                            fontSize: 32,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              } else if (state is PuzzleCurrentAnswer) {
+                                return Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      AppLocalizations.of(context)!
+                                          .theNumberGuessed,
+                                      style: const TextStyle(fontSize: 20),
+                                    ),
+                                    Text(
+                                      AppLocalizations.of(context)!.magnitude,
+                                      style: const TextStyle(fontSize: 16),
+                                    ),
+                                    Center(
+                                      child: Text(
+                                        state.magnitude.toString(),
+                                        style: const TextStyle(
+                                            fontSize: 32,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    Text(
+                                      AppLocalizations.of(context)!.order,
+                                      style: const TextStyle(fontSize: 16),
+                                    ),
+                                    Center(
+                                      child: Text(
+                                        state.order.toString(),
+                                        style: const TextStyle(
+                                            fontSize: 32,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              } else if (state is PuzzleNewGame) {
+                                return Center(
+                                  child: Text(
+                                    AppLocalizations.of(context)!
+                                        .enterNumberToStart,
                                     style: const TextStyle(fontSize: 20),
                                   ),
-                                  Center(
-                                    child: Text(
-                                      state.computerGuess,
-                                      style: const TextStyle(
-                                          fontSize: 32,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                   Text(
-                                    AppLocalizations.of(context)!.itTookYou,
-                                    style: const TextStyle(fontSize: 16),
-                                  ),
-                                  Center(
-                                    child: Text(
-                                      "${state.trialCount} ${ AppLocalizations.of(context)!.trials}",
-                                      style: const TextStyle(
-                                          fontSize: 32,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ],
-                              );
-                            }
-                            else if( state is PuzzleCurrentAnswer){
-                              return  Column(
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                   Text(
-                                    AppLocalizations.of(context)!.theNumberGuessed,
-                                    style: const TextStyle(fontSize: 20),
-                                  ),
-                                   Text(
-                                     AppLocalizations.of(context)!.magnitude,
-                                    style: const TextStyle(fontSize: 16),
-                                  ),
-                                  Center(
-                                    child: Text(
-                                      state.magnitude.toString(),
-                                      style: const TextStyle(
-                                          fontSize: 32,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                   Text(
-                                    AppLocalizations.of(context)!.order,
-                                    style: const TextStyle(fontSize: 16),
-                                  ),
-                                  Center(
-                                    child: Text(
-                                      state.order.toString(),
-                                      style: const TextStyle(
-                                          fontSize: 32,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ],
-                              );
-                            }
-                            else if (state is PuzzleNewGame){
-                              return  Center(
-                                child: Text(
-                                  AppLocalizations.of(context)!.enterNumberToStart,
-                                  style: const TextStyle(fontSize: 20),
-                                ),
-                              );
-                            }
-                            else{
-                              return const Center(
-                                child: SizedBox(
-                                    height: 10,
-                                    width: 10,
-                                    child: CircularProgressIndicator()),
-                              );
-                            }
-
-                          },
-                        )
-
-                      ),
+                                );
+                              } else {
+                                return const Center(
+                                  child: SizedBox(
+                                      height: 10,
+                                      width: 10,
+                                      child: CircularProgressIndicator()),
+                                );
+                              }
+                            },
+                          )),
                     ),
-                     Align(
+                    Align(
                       alignment: Alignment.bottomCenter,
                       child: GenericCircle(
-                        onTap:
-                        (state is PuzzleFinished)?
-                        () {
-                          _numberController.clear();
-                          context.read<PuzzleBloc>().add(PuzzleStartGame());
-                        } :
-                            (){
-                          if(_numberController.text.length == 4){
-                            context.read<PuzzleBloc>().add(PuzzleTryAnother(currentGuess: int.parse(_numberController.text) ));
-                          }
-                            },
-                        fillColor: const Color(0xFFdb6400),
+                        onTap: (state is PuzzleFinished)
+                            ? () {
+                                _numberController.clear();
+                                context
+                                    .read<PuzzleBloc>()
+                                    .add(PuzzleStartGame());
+                              }
+                            : () {
+                                if (_numberController.text.length == 4) {
+                                  context.read<PuzzleBloc>().add(
+                                      PuzzleTryAnother(
+                                          currentGuess: int.parse(
+                                              _numberController.text)));
+                                }
+                              },
+                        fillColor: BUTTON_SECONDARY,
                         height: 70,
                         width: 380,
                         isCircle: false,
                         child: Center(
                             child: Text(
-                              (state is PuzzleFinished)? AppLocalizations.of(context)!.playAnotherGame: AppLocalizations.of(context)!.checkNumber,
+                          (state is PuzzleFinished)
+                              ? AppLocalizations.of(context)!.playAnotherGame
+                              : AppLocalizations.of(context)!.checkNumber,
                           style: const TextStyle(fontSize: 24),
                         )),
                       ),
@@ -198,10 +202,8 @@ class _GameScreenState extends State<GameScreen> {
             height: 200,
             width: 360,
             child: Container(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               decoration: const BoxDecoration(
-
                   borderRadius: BorderRadius.all(Radius.circular(30))),
               child: (state is PuzzleFinished)
                   ? Column(
@@ -214,7 +216,7 @@ class _GameScreenState extends State<GameScreen> {
                           width: 120,
                           colorBlendMode: BlendMode.color,
                         ),
-                         Text(
+                        Text(
                           AppLocalizations.of(context)!.youWonWellPlayed,
                           style: const TextStyle(
                             fontSize: 25,
@@ -227,7 +229,7 @@ class _GameScreenState extends State<GameScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                         Text(
+                        Text(
                           AppLocalizations.of(context)!.enterFourDigitNumber,
                           style: const TextStyle(
                             fontSize: 25,
@@ -240,7 +242,7 @@ class _GameScreenState extends State<GameScreen> {
                             height: 70,
                             width: 120,
                             isCircle: false,
-                            fillColor: const Color.fromRGBO(242, 243, 247, 1),
+                            fillColor: GAME_SCREEN_BACKGROUND,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
@@ -252,7 +254,6 @@ class _GameScreenState extends State<GameScreen> {
                                   fontSize: 24,
                                 ),
                                 decoration: const InputDecoration(
-
                                   counterText: "",
                                   border: InputBorder.none,
                                 ),
@@ -261,7 +262,8 @@ class _GameScreenState extends State<GameScreen> {
                                     return "Please enter a number";
                                   }
                                   if (value.length != 4) {
-                                    return AppLocalizations.of(context)!.enterFourDigitNumber;
+                                    return AppLocalizations.of(context)!
+                                        .enterFourDigitNumber;
                                   }
                                   return null;
                                 },

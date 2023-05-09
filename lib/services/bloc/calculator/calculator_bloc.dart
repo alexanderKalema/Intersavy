@@ -1,11 +1,10 @@
 import 'package:math_expressions/math_expressions.dart';
 import 'package:android_app_development/constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 part 'calculator_state.dart';
 
-class SimpleCalculatorBloc extends Cubit<CalculatorState> {
-  SimpleCalculatorBloc() : super(CalculatorState());
+class SimpleCalculatorCubit extends Cubit<CalculatorState> {
+  SimpleCalculatorCubit() : super(CalculatorState());
 
   void calculate({String? buttonText}) {
     switch (buttonText) {
@@ -61,7 +60,6 @@ class SimpleCalculatorBloc extends Cubit<CalculatorState> {
     switch (value) {
       case "%":
         if (state.mathResult != '') {
-          print(value);
           emit(CalculatorState().copyWith(
               state
                 ..operandOne =
@@ -122,7 +120,6 @@ class SimpleCalculatorBloc extends Cubit<CalculatorState> {
         }
         break;
       default:
-        print("i come here when $value");
         if (state.mathResult == '' &&
             state.operandTwo == '' &&
             state.mathOperators == '') {
@@ -157,7 +154,6 @@ class SimpleCalculatorBloc extends Cubit<CalculatorState> {
     if (!scientific) {
       String expression =
           state.operandOne + state.mathOperators + state.operandTwo;
-      print(expression);
       return expression;
     } else {
       String expression = state.mathEquation;
@@ -192,7 +188,7 @@ class SimpleCalculatorBloc extends Cubit<CalculatorState> {
               : result));
       }
     } catch (e) {
-      emit(CalcError('Error'));
+      emit(CalcError(e.toString()));
     }
   }
 }

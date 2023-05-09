@@ -2,9 +2,16 @@ import 'package:flutter/material.dart';
 
 const APPBAR_SHADOW_COLOR = Color(0XFFC6C6D7);
 const SCAFFOLD_BACKGROUND_COLOR = Color(0xFFF5F5F5);
-const MAIN_TEXT_COLOR = Color(0xFF1D1D1D); // 0xFF1A1A1B - deedees
-const SECONDARY_TEXT_COLOR = Colors.white; // 0xFF717D96 - deedees
-const STOP_WATCH_BORDER = Color(0xFF0395EB); // 0xFF717D96 - deedees
+const MAIN_TEXT_COLOR = Color(0xFF1D1D1D);
+const SECONDARY_TEXT_COLOR = Colors.white;
+const DIALOG_TEXT_COLOR = Color(0xFFa0acb8);
+const HIGH_SCORE_BACKGROUND = Color(0xFF094074);
+const MUSIC_NOTE_COLOR = Colors.black;
+const GENERIC_BORDER_COLOR = Colors.black26;
+const GAME_SCREEN_BACKGROUND = Color.fromRGBO(242, 243, 247, 1);
+const STOP_WATCH_BORDER = Color(0xFF0395EB);
+const CALCULATOR_KEYS_COLOR = Color(0xFF444444);
+const CALCULATOR_ERROR_BACKGROUND = Colors.red;
 const BUTTON_PRIMARY = Color(0xFF8E9AAF);
 const CLOCK_HOUR_HAND = Color(0xFFFFB86F);
 const CLOCK_MINUTE_HAND = Color(0XFF1b599e);

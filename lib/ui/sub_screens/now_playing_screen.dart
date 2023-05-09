@@ -21,7 +21,6 @@ class NowPlaying extends StatefulWidget {
 }
 
 class _NowPlayingState extends State<NowPlaying> {
-
   @override
   void didChangeDependencies() {
     widget.customSound.initalize();
@@ -35,7 +34,7 @@ class _NowPlayingState extends State<NowPlaying> {
       create: (context) => widget.customSound,
       child: Consumer<CustomSound>(builder: (context, value, child) {
         return Scaffold(
-          appBar:  MyAppBar(
+          appBar: MyAppBar(
             title: AppLocalizations.of(context)!.nowPlaying,
           ),
           body: SizedBox.expand(
@@ -60,7 +59,7 @@ class _NowPlayingState extends State<NowPlaying> {
                       child: Icon(
                         Icons.music_note_sharp,
                         size: 150,
-                        color: Colors.black,
+                        color: MUSIC_NOTE_COLOR,
                       ),
                     ),
                   ),
@@ -127,7 +126,7 @@ class _NowPlayingState extends State<NowPlaying> {
                       child: const Icon(
                         Icons.skip_previous,
                         size: 50,
-                        color: Colors.black,
+                        color: MUSIC_NOTE_COLOR,
                       ),
                       onTap: () {
                         value.playOrPauseSong();
@@ -145,7 +144,7 @@ class _NowPlayingState extends State<NowPlaying> {
                       child: Icon(
                         value.isPlaying ? Icons.pause : Icons.play_arrow,
                         size: 50,
-                        color: Colors.black,
+                        color: MUSIC_NOTE_COLOR,
                       ),
                       onTap: () {
                         value.playOrPauseSong();
@@ -165,7 +164,7 @@ class _NowPlayingState extends State<NowPlaying> {
                       child: const Icon(
                         Icons.skip_next,
                         size: 50,
-                        color: Colors.black,
+                        color: MUSIC_NOTE_COLOR,
                       ),
                     ),
                   ],

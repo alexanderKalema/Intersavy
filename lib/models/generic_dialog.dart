@@ -1,7 +1,6 @@
 import 'package:android_app_development/constants.dart';
 import 'package:flutter/material.dart';
 
-
 typedef DialogOptionBuilder<T> = Map<String, VoidCallback> Function();
 
 Future<T?> showGenericDialog<T>({
@@ -14,22 +13,23 @@ Future<T?> showGenericDialog<T>({
   final options = optionsBuilder();
 
   return showDialog<T>(
-    barrierDismissible: false,
+      barrierDismissible: false,
       context: context,
       builder: (context) {
         return Dialog(
-          insetPadding: const EdgeInsets.symmetric(horizontal: 25, vertical: 40),
-          backgroundColor: Colors.white,
+          insetPadding:
+              const EdgeInsets.symmetric(horizontal: 25, vertical: 40),
+          backgroundColor: SECONDARY_TEXT_COLOR,
           shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
 
           //this right here
           child: SizedBox(
-            height: MediaQuery.of(context).size.height* 0.40,
+            height: MediaQuery.of(context).size.height * 0.40,
             width: double.maxFinite,
             child: Padding(
               padding:
-              const EdgeInsets.symmetric(vertical: 30.0, horizontal: 20),
+                  const EdgeInsets.symmetric(vertical: 30.0, horizontal: 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,17 +45,16 @@ Future<T?> showGenericDialog<T>({
                     child: Text(
                       title,
                       style: const TextStyle(
-                          fontSize: 21,
-                          fontWeight: FontWeight.w200,
+                        fontSize: 21,
+                        fontWeight: FontWeight.w200,
                       ),
                     ),
                   ),
-
                   Text(
                     content,
                     style: const TextStyle(
-                        color: Color(0xFFa0acb8),
-                        fontSize: 14,
+                      color: DIALOG_TEXT_COLOR,
+                      fontSize: 14,
                     ),
                   ),
                   Row(
@@ -65,37 +64,31 @@ Future<T?> showGenericDialog<T>({
                       ...(options.keys).map((optionTitle) {
                         final value = options[optionTitle];
                         return SizedBox(
-                          height:MediaQuery.of(context).size.height* 0.06,
+                          height: MediaQuery.of(context).size.height * 0.06,
                           child: TextButton(
                               style: ButtonStyle(
-                                  textStyle:
-                                  MaterialStateProperty.resolveWith(
-                                          (states) {
-                                        return const TextStyle(
-                                            color: Color(0xFFa0acb8),
-                                            fontSize: 19,
-                                        );
-                                      }),
+                                  textStyle: MaterialStateProperty.resolveWith(
+                                      (states) {
+                                    return const TextStyle(
+                                      color: DIALOG_TEXT_COLOR,
+                                      fontSize: 19,
+                                    );
+                                  }),
                                   overlayColor:
-                                  MaterialStateProperty.all<Color>(
-                                      BUTTON_SECONDARY
-                                  ),
+                                      MaterialStateProperty.all<Color>(
+                                          BUTTON_SECONDARY),
                                   foregroundColor:
-                                  MaterialStateProperty.resolveWith(
-                                          (states) =>  Colors.white
-                                  ),
+                                      MaterialStateProperty.resolveWith(
+                                          (states) => SECONDARY_TEXT_COLOR),
                                   backgroundColor:
-                                  MaterialStateColor.resolveWith(
-                                          (states) {
-                                        return BUTTON_SECONDARY;
-                                      }),
+                                      MaterialStateColor.resolveWith((states) {
+                                    return BUTTON_SECONDARY;
+                                  }),
                                   shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
+                                          RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(18.0),
-                                        //side: BorderSide(color: Colors.red)
-                                      ))),
+                                    borderRadius: BorderRadius.circular(18.0),
+                                  ))),
                               onPressed: value,
                               child: Text(optionTitle)),
                         );

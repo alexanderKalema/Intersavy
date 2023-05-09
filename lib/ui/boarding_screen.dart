@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:android_app_development/utilities/get_page.dart';
 
 class BoardingScreen extends StatefulWidget {
   const BoardingScreen({Key? key}) : super(key: key);
@@ -27,15 +28,16 @@ class _BoardingScreenState extends State<BoardingScreen> {
     return Scaffold(
       backgroundColor: BUTTON_PRIMARY,
       body: BlocBuilder<HomeBloc, HomeState>(
-
         builder: (context, state) {
-          print(INTRO_TITLES[window.locale.toString()]);
           if (state is FirstRunState) {
             return Stack(
               children: [
                 PageView.builder(
-                  itemBuilder: (context, index) => getPage(IMAGE_LIST[index],
-                      INTRO_TITLES[window.locale.toString()]![index], INTRO_SUBTITLES[window.locale.toString()]![index], context),
+                  itemBuilder: (context, index) => getPage(
+                      IMAGE_LIST[index],
+                      INTRO_TITLES[window.locale.toString()]![index],
+                      INTRO_SUBTITLES[window.locale.toString()]![index],
+                      context),
                   controller: pageController,
                   itemCount: INTRO_TITLES[window.locale.toString()]!.length,
                   onPageChanged: (int index) {
@@ -45,7 +47,8 @@ class _BoardingScreenState extends State<BoardingScreen> {
                   },
                 ),
                 Visibility(
-                  visible: state.pageIndex + 1 == INTRO_TITLES[window.locale.toString()]!.length,
+                  visible: state.pageIndex + 1 ==
+                      INTRO_TITLES[window.locale.toString()]!.length,
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Align(
@@ -54,14 +57,11 @@ class _BoardingScreenState extends State<BoardingScreen> {
                         onPressed: () {
                           context.read<HomeBloc>().add(BoardingDoneEvent());
                         },
-                        style: OutlinedButton.styleFrom(
-                            side: const BorderSide(color: Colors.white),
-                            shape: const StadiumBorder()),
-                        child:  Text(
+                        child: Text(
                           AppLocalizations.of(context)!.cont,
                           style: const TextStyle(
                               fontSize: 14.0,
-                              color: Colors.white,
+                              color: SECONDARY_TEXT_COLOR,
                               fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -76,7 +76,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
                       controller: pageController,
                       count: INTRO_TITLES[window.locale.toString()]!.length,
                       effect: ScrollingDotsEffect(
-                          activeDotColor: Colors.white,
+                          activeDotColor: SECONDARY_TEXT_COLOR,
                           dotColor: Colors.grey.shade400,
                           dotWidth: 8,
                           dotHeight: 8,
@@ -91,46 +91,6 @@ class _BoardingScreenState extends State<BoardingScreen> {
           }
         },
       ),
-    );
-  }
-
-  Widget getPage(
-      dynamic image, String title, String subTitle, BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        image is String
-            ? Image.asset(
-                image,
-                width: 150,
-                height: 150,
-                fit: BoxFit.contain,
-              )
-            : Icon(
-                image as IconData,
-                color: Colors.white,
-                size: 150,
-              ),
-        const SizedBox(height: 40),
-        Text(
-          title.toUpperCase(),
-          style: const TextStyle(
-              letterSpacing: 1.5,
-              color: Colors.white,
-              fontSize: 40.0,
-              fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-            subTitle,
-            style: const TextStyle(color: Colors.white, fontSize: 14.0),
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ],
     );
   }
 }

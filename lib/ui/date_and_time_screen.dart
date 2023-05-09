@@ -1,7 +1,6 @@
 import 'dart:ui';
-
 import 'package:android_app_development/models/generic_circle.dart';
-import 'package:android_app_development/services/clock_painter.dart';
+import 'package:android_app_development/services/clock_service.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -34,7 +33,7 @@ class _DateAndTimeScreenState extends State<DateAndTimeScreen> {
   Widget build(BuildContext context) {
     final DateTime dateTime = DateTime.now();
     return Scaffold(
-        appBar:  MyAppBar(
+        appBar: MyAppBar(
           title: AppLocalizations.of(context)!.dateAndTimeApp,
         ),
         body: SizedBox.expand(
@@ -44,15 +43,16 @@ class _DateAndTimeScreenState extends State<DateAndTimeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                 Text(
+                Text(
                   AppLocalizations.of(context)!.todayIs,
                   style: const TextStyle(fontSize: 25),
                 ),
                 Text(
-                    DateFormat.yMMMMd( window.locale.toString()).format(dateTime),
-                  style: const TextStyle(fontSize: 45),),
+                  DateFormat.yMMMMd(window.locale.toString()).format(dateTime),
+                  style: const TextStyle(fontSize: 45),
+                ),
                 GenericCircle(
-                  fillColor:  BUTTON_PRIMARY,
+                    fillColor: BUTTON_PRIMARY,
                     height: _isAnalog ? 300 : 100,
                     width: _isAnalog ? 300 : 250,
                     isCircle: _isAnalog ? true : false,
@@ -70,10 +70,12 @@ class _DateAndTimeScreenState extends State<DateAndTimeScreen> {
                       _isAnalog = !_isAnalog;
                     });
                   },
-                  fillColor:  BUTTON_PRIMARY,
+                  fillColor: BUTTON_PRIMARY,
                   child: Center(
                     child: Text(
-                      _isAnalog ? AppLocalizations.of(context)!.changeToDigital : AppLocalizations.of(context)!.changeToAnalog,
+                      _isAnalog
+                          ? AppLocalizations.of(context)!.changeToDigital
+                          : AppLocalizations.of(context)!.changeToAnalog,
                       style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,

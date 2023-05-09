@@ -28,27 +28,34 @@ class GenericCircle extends StatelessWidget {
       child: Container(
         height: height,
         width: width,
-     //   alignment: Alignment.center,
+        //   alignment: Alignment.center,
         decoration: BoxDecoration(
-            color: fillColor ?? Colors.white,
+            color: fillColor ?? SECONDARY_TEXT_COLOR,
             shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
             border: Border.all(
-              color:  isCalculatorButton?? false ? Colors.black26  : fillColor ??  BUTTON_PRIMARY,
-              width: isCalculatorButton?? false ? 1 : 4,
+              color: isCalculatorButton ?? false
+                  ? GENERIC_BORDER_COLOR
+                  : fillColor ?? BUTTON_PRIMARY,
+              width: isCalculatorButton ?? false ? 1 : 4,
             ),
             borderRadius: isCircle ? null : BorderRadius.circular(15),
-            boxShadow:  [
+            boxShadow: [
               BoxShadow(
-                color: Colors.black26,
-                offset: isCalculatorButton?? false ? Offset(0,0) : Offset(20, 20),
-                blurRadius: isCalculatorButton?? false ? 3 :40,
+                color: GENERIC_BORDER_COLOR,
+                offset: isCalculatorButton ?? false
+                    ? const Offset(0, 0)
+                    : const Offset(20, 20),
+                blurRadius: isCalculatorButton ?? false ? 3 : 40,
               ),
               BoxShadow(
-                color: isCalculatorButton?? false ? fillColor ?? Colors.white54 :Colors.white,
-                offset: isCalculatorButton?? false ? Offset(0, 0) :Offset(-1, -1),
-                blurRadius: isCalculatorButton?? false ? 2:7,
+                color: isCalculatorButton ?? false
+                    ? fillColor ?? CLOCK_OUTER_CIRCLE
+                    : SECONDARY_TEXT_COLOR,
+                offset: isCalculatorButton ?? false
+                    ? const Offset(0, 0)
+                    : const Offset(-1, -1),
+                blurRadius: isCalculatorButton ?? false ? 2 : 7,
               )
-
             ]),
         child: child,
       ),
