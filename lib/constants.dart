@@ -101,17 +101,17 @@ const RULES = {
 };
 
 const INTRO_TITLES = {
-  'en_US': ['Hello!', 'Dedication!', 'Thank You!', 'See you soon!'],
+  'en_US': ['', '', '', ''],
   'hi_IN': ['नमस्ते!', 'समर्पण!', 'धन्यवाद!', 'जल्द ही मिलते हैं!'],
   'ru_RU': ['Привет!', 'Посвящение!', 'Спасибо!', 'До скорого!']
 };
 
 const INTRO_SUBTITLES = {
   'en_US': [
-    'I am Alex, a fellow developer from Ethiopia, Africa. I have been developing mobile apps for about a year now.',
-    "I'm so excited to present my app of 5 tasks to you! I've spent my internship time carefully developing and refining it to present you an app that is both beautiful and exceptionally functional.",
-    'This goes without saying how delighted I am to have been given this opportunity to share my passion and showcase my skills.',
-    'Finally I hope you enjoy the app and that it brings you joy. I also look forward to hearing from you again.',
+    'We have worked on this wireless computing assignment and produced this application.',
+    "We are so excited to present this app of 5 tasks to you! We have spent time carefully developing and refining it to present you an app that is both beautiful and exceptionally functional.",
+    'Our Group consist of \n\n Abigail Arega (UGR/7574/13) \n Alexander Kiros(UGR/5158/13) \n Birehanu Asmamaw (UGR/2160/13) \n Eyob Tefferi (UGR/1218/13) \n Franol Fekadu (UGR/6108/13)',
+    'Finally We hope you enjoy the app and Simplifies your day to day tasks.',
   ],
   'hi_IN': [
     'मैं एलेक्स हूं, एक फेलो डेवलपर ईथियोपिया, अफ्रीका से। मैं लगभग एक साल से मोबाइल ऐप्स विकसित कर रहा हूं।',
